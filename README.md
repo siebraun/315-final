@@ -8,4 +8,7 @@ features go here
 
 ## credits
 
-Site structure and routing by Sierra.
+### Sierra
+
+Site structure and routing
+Navigation and footer styling
