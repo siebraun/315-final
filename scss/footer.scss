@@ -1,0 +1,25 @@
+footer {
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 50px;
+
+  .links,
+  p {
+    font-family: lato-italic;
+    display: flex;
+
+    p,
+    a {
+      margin-left: 20px;
+      font-size: 15px;
+    }
+  }
+
+  .footer-icons {
+    img {
+      width: 25px;
+      margin-left: 40px;
+    }
+  }
+}

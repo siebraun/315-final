@@ -1,0 +1,21 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px;
+
+  .links {
+    a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: black;
+      font-family: caveat;
+      font-size: 25px;
+    }
+
+    .login {
+      background-color: var(--yellow);
+      padding: 10px 20px;
+      border-radius: 25px;
+    }
+  }
+}

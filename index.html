@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>Jungle Cook</title>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <img src="assets/images/logo.svg" alt="" />
+      </div>
+      <span class="links">
+        <a href="#home">Home</a>
+        <a href="#browse">Browse</a>
+        <a href="#createRecipe">Create Recipe</a>
+        <a href="#yourRecipes">Your Recipes</a>
+        <a class="login" href="#login">Login</a>
+      </span>
+    </nav>
+    <div id="app"></div>
+
+    <footer>
+      <p>Copyright © 2019 The Jungle Cook</p>
+
+      <div class="links">
+        <a class="login" href="#login">Login</a>
+        <p>Recipes by Category</p>
+        <p>Privacy and Copyright</p>
+        <p class="hidden">Create Recipe</p>
+        <p class="hidden">Your Recipes</p>
+      </div>
+
+      <div class="footer-icons">
+        <span
+          ><img src="assets/images/facebook.svg" alt="" />
+          <img src="assets/images/instagram.svg" alt=""
+        /></span>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+      integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script src="app/model.js" type="module"></script>
+    <script src="app/app.js" type="module"></script>
+  </body>
+</html>
