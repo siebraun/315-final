@@ -12,3 +12,4 @@ features go here
 
 Site structure and routing
 Navigation and footer styling
+Log in function

@@ -1,0 +1,46 @@
+.login-wrapper {
+  width: 80%;
+  margin: 0 auto;
+  background-color: var(--yellow);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  h2 {
+    font-family: lato-black;
+    font-size: 30px;
+  }
+
+  .form {
+    * {
+      display: block;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+      border: none;
+      border-bottom: 3px black solid;
+      background-color: var(--yellow);
+      margin-top: 50px;
+      width: 250px;
+      outline: none;
+    }
+
+    input[type="submit"] {
+      font-family: caveat;
+      font-size: 25px;
+      width: 250px;
+      height: 52px;
+      margin-top: 50px;
+      border-radius: 25px;
+      border: none;
+      box-shadow: 0px 10px 6px rgba(0, 0, 0, 0.16);
+      margin-bottom: 130px;
+
+      input[type="submit"]:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

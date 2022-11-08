@@ -21,13 +21,21 @@ p {
 }
 
 #app {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
 }
 
 a {
   color: black;
   text-decoration: none;
+}
+
+p {
+  font-family: lato;
+}
+
+.hidden {
+  display: none;
 }
 
 @font-face {
@@ -93,6 +101,46 @@ footer p a {
 footer .footer-icons img {
   width: 25px;
   margin-left: 40px;
+}
+
+.login-wrapper {
+  width: 80%;
+  margin: 0 auto;
+  background-color: var(--yellow);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.login-wrapper h2 {
+  font-family: lato-black;
+  font-size: 30px;
+}
+.login-wrapper .form * {
+  display: block;
+}
+.login-wrapper .form input[type=text],
+.login-wrapper .form input[type=password],
+.login-wrapper .form input[type=email] {
+  border: none;
+  border-bottom: 3px black solid;
+  background-color: var(--yellow);
+  margin-top: 50px;
+  width: 250px;
+  outline: none;
+}
+.login-wrapper .form input[type=submit] {
+  font-family: caveat;
+  font-size: 25px;
+  width: 250px;
+  height: 52px;
+  margin-top: 50px;
+  border-radius: 25px;
+  border: none;
+  box-shadow: 0px 10px 6px rgba(0, 0, 0, 0.16);
+  margin-bottom: 130px;
+}
+.login-wrapper .form input[type=submit] input[type=submit]:hover {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=styles.css.map */
