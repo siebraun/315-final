@@ -6,6 +6,7 @@ function changeRoute() {
 
   if (pageID == "" || pageID == "home") {
     MODEL.changePage(pageID);
+    $("#app, nav, footer").css("background-color", "transparent");
   } else if (pageID == "login") {
     MODEL.changePage(pageID);
     $("#app, nav, footer").css("background-color", "var(--yellow)");
