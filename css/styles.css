@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   --yellow: #ffd972;
+  --green: #a7e8bd;
 }
 
 html,
@@ -141,6 +142,15 @@ footer .footer-icons img {
 }
 .login-wrapper .form input[type=submit] input[type=submit]:hover {
   cursor: pointer;
+}
+
+.recipes-wrapper {
+  width: 80%;
+  margin: 0 auto;
+  background-color: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 /*# sourceMappingURL=styles.css.map */
