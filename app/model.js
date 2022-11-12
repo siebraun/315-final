@@ -6,6 +6,8 @@ export function changePage(pageID, subPageID) {
     $.get(`pages/${pageID}.html`, function (data) {
       $("#app").html(data);
       MODEL.initSubmitListener();
+      MODEL.createRecipe();
+      MODEL.loopData();
     }).fail((error) => {
       if (error.status == "404") {
       }
@@ -16,6 +18,8 @@ export function changePage(pageID, subPageID) {
       // console.log(data);
       $("#app").html(data);
       MODEL.initSubmitListener();
+      MODEL.createRecipe();
+      MODEL.loopData();
     }).fail((error) => {
       if (error.status == "404") {
         //   alert("Page can not be found. Please check your url!");
