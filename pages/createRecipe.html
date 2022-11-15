@@ -1,47 +1,78 @@
 <div class="create-wrapper">
-  <form id="addRecipe">
-    <input
-      type="text"
-      name="recipeImg"
-      id="recipeImg"
-      value="Add Recipe Image"
-    />
+  <!-- <h1 id="createRecipeh1">hello</h1> -->
 
-    <input type="text" name="recipeName" id="recipeName" value="Recipe Name" />
+  <div class="formHolder">
+    <div class="basicInfo">
+      <input
+        type="text"
+        name="recipeImg"
+        id="rImg"
+        placeholder="Add Recipe Image"
+      />
+      <input
+        type="text"
+        name="recipeName"
+        id="rName"
+        placeholder="Recipe Name"
+      />
+      <input
+        type="text"
+        name="recipeDesc"
+        id="rDesc"
+        placeholder="Recipe Description"
+      />
+      <input
+        type="text"
+        name="recipeTime"
+        id="rTime"
+        placeholder="Recipe Total Time"
+      />
+      <input
+        type="text"
+        name="recipeServing"
+        id="rServing"
+        placeholder="Recipe Serving Size"
+      />
+    </div>
 
-    <input
-      type="text"
-      name="recipeDesc"
-      id="recipeDesc"
-      value="Recipe Description"
-    />
+    <div class="formIngredients">
+      <p>Enter Ingredients:</p>
+      <input
+        type="text"
+        name="ingred0"
+        id="ingred0"
+        placeholder="Ingredient #1"
+      />
+      <input
+        type="text"
+        name="ingred1"
+        id="ingred1"
+        placeholder="Ingredient #2"
+      />
+      <input
+        type="text"
+        name="ingred2"
+        id="ingred2"
+        placeholder="Ingredient #3"
+      />
+      <div id="addIngred" class="addButton">+</div>
+    </div>
 
-    <input
-      type="text"
-      name="recipetime"
-      id="recipeTime"
-      value="Recipe Total Time"
-    />
+    <div class="formInstructions">
+      <p>Enter Instructions:</p>
+      <input
+        type="text"
+        name="inst0 "
+        id="inst0"
+        placeholder="Instruction #1"
+      />
+      <input type="text" name="inst1" id="inst1" placeholder="Instruction #2" />
+      <input type="text" name="inst2" id="inst2" placeholder="Instruction #3" />
+      <div id="addInst" class="addButton">+</div>
+    </div>
 
-    <input
-      type="text"
-      name="recipeServings"
-      id="recipeServings"
-      value="Recipe Serving Size"
-    />
-
-    <input type="text" name="ingred1" id="ingred1" value="Ingredient #1" />
-
-    <input type="text" name="ingred2" id="ingred2" value="Ingredient #2" />
-
-    <input type="text" name="ingred3" id="ingred3" value="Ingredient #3" />
-
-    <input type="text" name="instruct1" id="instruct1" value="Instruction #1" />
-
-    <input type="text" name="instruct2" id="instruct2" value="Instruction #2" />
-
-    <input type="text" name="instruct3" id="instruct3" value="Instruction #3" />
-
-    <input type="submit" id="addRecipeSubmit" value="Create Recipe" />
-  </form>
+    <div class="submit">
+      <input id="submit" type="submit" value="Submit" />
+    </div>
+  </div>
 </div>

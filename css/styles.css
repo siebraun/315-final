@@ -4,6 +4,7 @@
   box-sizing: border-box;
   --yellow: #ffd972;
   --green: #a7e8bd;
+  --pink: #efa7a7;
 }
 
 html,
@@ -151,6 +152,73 @@ footer .footer-icons img {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-bottom: 16px;
+}
+
+.formHolder,
+.submit {
+  max-width: 500px;
+  margin: 0 auto;
+  /* background-color: seagreen; */
+  position: relative;
+}
+
+input {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+  height: 40px;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid black;
+  font-size: 14px;
+  padding-left: 20px;
+}
+
+input[type=submit] {
+  background-color: var(--yellow);
+}
+
+.formIngredients,
+.formInstructions {
+  position: relative;
+}
+
+.addButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--pink);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 30px;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px;
+  right: 5px;
 }
 
 /*# sourceMappingURL=styles.css.map */

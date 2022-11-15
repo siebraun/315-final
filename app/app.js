@@ -18,7 +18,21 @@ let obj = {
     },
   ],
 
-  yourRecipes: [{}],
+  yourRecipes: [
+    {
+      name: "Supreme Pizza",
+      imgsrc: "../assets/images/recipe-pizza.jpg",
+      desc: "mmm yummy pizza",
+      totalTime: "1hr 24min",
+      servings: "4 servings",
+      ingred1: "ham",
+      ingred2: "burger",
+      ingred3: "",
+      instruct1: "go to mcdonalds",
+      instruct2: "order hamburger",
+      instruct3: "eat hamburger",
+    },
+  ],
 };
 
 // define localstorage items
@@ -34,10 +48,10 @@ let yourinst1 = localStorage.getItem("instruct1");
 let yourinst2 = localStorage.getItem("instruct2");
 let yourinst3 = localStorage.getItem("instruct3");
 
-// window.localStorage.setItem("yourrecipes", JSON.stringify(obj.Recipes));
+window.localStorage.setItem("yourrecipes", JSON.stringify(obj.Recipes));
 
-// let newRecipe = window.localStorage.getItem("yourrecipes");
-// console.log(JSON.parse(newRecipe));
+let newRecipe = window.localStorage.getItem("yourrecipes");
+console.log(JSON.parse(newRecipe));
 
 // ROUTING
 function changeRoute() {
@@ -83,8 +97,12 @@ export function initSubmitListener() {
     console.log("hi");
 
     //navigate to your yourrecipes page
-    MODEL.changePage("yourRecipes");
-    $("#app, nav, footer").css("background-color", "var(--green)");
+    MODEL.changePage("createRecipe");
+    $("#app, nav, footer").css("background-color", "white");
+
+    $(".create-wrapper .formHolder").append(`<h1>Hi</h1>`);
+
+    // console.log("hi");
   });
 }
 
@@ -171,7 +189,7 @@ export function loopData() {
 
       <div class="recipe-buttons">
         <button onclick="editRecipe(${idx})">Edit</button>
-        <button onclick="deleteRecipe(${idx})">Delete</button>
+        <button id="delete">Delete</button>
       </div>
     </div>
   `);
@@ -180,20 +198,22 @@ export function loopData() {
   });
 }
 
-function deleteRecipe(recipeId) {
-  obj.yourRecipes.splice(recipeId, 1);
-  localStorage.removeItem("imgsrc");
-  localStorage.removeItem("name");
-  localStorage.removeItem("desc");
-  localStorage.removeItem("totalTime");
-  localStorage.removeItem("servings");
-  localStorage.removeItem("ingred1");
-  localStorage.removeItem("ingred2");
-  localStorage.removeItem("ingred3");
-  localStorage.removeItem("instruct1");
-  localStorage.removeItem("instruct2");
-  localStorage.removeItem("instruct3");
-  loopData();
+export function deleteRecipe(recipeId) {
+  $("#delete").on("click", (e) => {
+    obj.yourRecipes.splice(recipeId, 1);
+    localStorage.removeItem("imgsrc");
+    localStorage.removeItem("name");
+    localStorage.removeItem("desc");
+    localStorage.removeItem("totalTime");
+    localStorage.removeItem("servings");
+    localStorage.removeItem("ingred1");
+    localStorage.removeItem("ingred2");
+    localStorage.removeItem("ingred3");
+    localStorage.removeItem("instruct1");
+    localStorage.removeItem("instruct2");
+    localStorage.removeItem("instruct3");
+    loopData();
+  });
 }
 
 // create recipe
