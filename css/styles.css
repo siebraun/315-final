@@ -140,8 +140,6 @@ footer .footer-icons img {
   border: none;
   box-shadow: 0px 10px 6px rgba(0, 0, 0, 0.16);
   margin-bottom: 130px;
-}
-.login-wrapper .form input[type=submit] input[type=submit]:hover {
   cursor: pointer;
 }
 
@@ -219,6 +217,24 @@ input[type=submit] {
   position: absolute;
   bottom: 10px;
   right: 5px;
+}
+
+.basicInfo,
+.formIngredients,
+.formInstructions {
+  margin-bottom: 110px;
+}
+
+#recipeSubmit {
+  background-color: var(--pink);
+  border: none;
+  width: 422px;
+  height: 52px;
+  cursor: pointer;
+  margin: 0 auto;
+  margin-bottom: 100px;
+  border-radius: 25px;
+  box-shadow: 0px 10px 6px rgba(0, 0, 0, 0.16);
 }
 
 /*# sourceMappingURL=styles.css.map */
