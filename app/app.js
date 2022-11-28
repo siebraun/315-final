@@ -19,12 +19,6 @@ let obj = {
   ],
 };
 
-let recipeObj = {
-  info: [],
-  ingredients: [],
-  instructions: [],
-};
-
 // ROUTING
 function changeRoute() {
   let hashTag = window.location.hash;
@@ -85,8 +79,39 @@ export function initSubmitListener() {
 //
 //
 // view recipe function
-export function viewRecipe() {
-  $(".view-yourrecipes").append(`
+// export function viewRecipe(idx, recipeObj) {
+//   $(".view-yourrecipes").append(`
+//   <div class="recipe-wrapper">
+//       <div class="recipe-details">
+//         <div class="recipe-img">
+//           <button onclick="viewRecipe(${idx})">View</button>
+//         </div>
+
+//         <div class="recipe-info">
+//           <h1>${recipeObj.info}</h1>
+
+//         </div>
+//       </div>
+
+//       <div class="recipe-buttons">
+//         <button onclick="editRecipe(${idx})">Edit</button>
+//         <button onclick="deleteRecipe(${idx})">Delete</button>
+//       </div>
+//     </div>
+//   `);
+// }
+
+//
+//
+//
+// loop data
+export function loopData() {
+  //clear data
+  $(".recipes").html("");
+
+  // add recipe to list
+  $.each(obj.yourRecipes, (idx, yourrecipes) => {
+    $(".yourrecipes").append(`
   <div class="recipe-wrapper">
       <div class="recipe-details">
         <div class="recipe-img">
@@ -103,61 +128,13 @@ export function viewRecipe() {
 
       <div class="recipe-buttons">
         <button onclick="editRecipe(${idx})">Edit</button>
-        <button onclick="deleteRecipe(${idx})">Delete</button>
+        <button id="delete">Delete</button>
       </div>
     </div>
   `);
-}
 
-//
-//
-//
-// loop data
-export function loopData() {
-  //clear data
-  $(".recipes").html("");
-
-  // add recipe to list
-  // $.each(obj.yourRecipes, (idx, yourrecipes) => {
-  //   $(".yourrecipes").append(
-  //     `<p>${yourrecipes.name}</p>
-  //     <p>${yourrecipes.imgsrc}</p>
-  //     <p>${yourrecipes.desc}</p>
-  //     <p>${yourrecipes.totalTime}</p>
-  //     <p>${yourrecipes.servings}</p>
-  //     <p>${yourrecipes.ingred1}</p>
-  //     <p>${yourrecipes.ingred2}</p>
-  //     <p>${yourrecipes.ingred3}</p>
-  //     <p>${yourrecipes.instruct1}</p>
-  //     <p>${yourrecipes.instruct2}</p>
-  //     <p>${yourrecipes.instruct3}</p>
-  //     `
-  //   );
-
-  //   $(".recipes").append(`
-  // <div class="recipe-wrapper">
-  //     <div class="recipe-details">
-  //       <div class="recipe-img">
-  //         <button onclick="viewRecipe(${idx})">View</button>
-  //       </div>
-
-  //       <div class="recipe-info">
-  //         <h1>${yourname}</h1>
-  //         <p>${yourdesc}</p>
-  //         <p>${yourtime}</p>
-  //         <p>${yourservings}</p>
-  //       </div>
-  //     </div>
-
-  //     <div class="recipe-buttons">
-  //       <button onclick="editRecipe(${idx})">Edit</button>
-  //       <button id="delete">Delete</button>
-  //     </div>
-  //   </div>
-  // `);
-
-  //   // viewRecipe();
-  // });
+    // viewRecipe();
+  });
 }
 
 export function deleteRecipe(recipeId) {
@@ -216,29 +193,64 @@ export function createRecipe() {
   //
   // submit the info
   $("#recipeSubmit").on("click", (e) => {
+    let recipeObj = [];
     e.preventDefault();
 
     $(".formHolder .formInstructions input").each((idx, instruction) => {
       //   console.log(instruction.value);
-      recipeObj.instructions.push({ instructions: instruction.value });
+      recipeObj.push({ instructions: instruction.value });
     });
 
     $(".formHolder .formIngredients input").each((idx, ingredients) => {
       //   console.log(instruction.value);
-      recipeObj.ingredients.push({ ingredients: ingredients.value });
+      recipeObj.push({ ingredients: ingredients.value });
     });
 
     $(".formHolder .basicInfo input").each((idx, info) => {
-      recipeObj.info.push({
+      recipeObj.push({
         info: info.value,
       });
     });
 
-    console.log(recipeObj);
+    localStorage.setItem("newRecipe", JSON.stringify(recipeObj));
+    let newRecipe = JSON.parse(localStorage.getItem("newRecipe"));
+    for (let i = 0; i < newRecipe.length; i++) {
+      let newRecipes = newRecipe[i];
+      document.getElementById("yourrecipes").append(newRecipes);
+    }
 
-    $(".recipes").html(recipeObj);
+    // localStorage.setItem("info", JSON.stringify(recipeObj.info));
 
-    // $(".data").html(recipeObj);
+    // localStorage.setItem("ingredients", JSON.stringify(recipeObj.ingredients));
+    // localStorage.setItem(
+    //   "instructions",
+    //   JSON.stringify(recipeObj.instructions)
+    // );
+
+    // loopData();
+    // console.log(localStorage.key(1));
+
+    let newInfo = JSON.parse(localStorage.getItem("info"));
+    console.log(newInfo);
+    for (let i = 0; i < newInfo.length; i++) {
+      let newInfos = newInfo[i];
+      document.getElementById("yourrecipes").append(newInfo);
+    }
+
+    let newIngredients = JSON.parse(localStorage.getItem("ingredients"));
+    for (let i = 0; i < newIngredients.length; i++) {
+      let newIngred = newIngredients[i];
+    }
+
+    let newInstrustions = JSON.parse(localStorage.getItem("instructions"));
+    for (let i = 0; i < newInstrustions.length; i++) {
+      let newInstr = newInstrustions[i];
+      document.getElementById("yourrecipes").append(newInstr[i]);
+    }
+
+    // console.log(newInfo);
+
+    console.log(newInstrustions);
   });
 }
 

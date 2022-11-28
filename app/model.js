@@ -9,6 +9,7 @@ export function changePage(pageID, subPageID) {
       MODEL.createRecipe();
       MODEL.loopData();
       MODEL.deleteRecipe();
+      // MODEL.viewRecipe();
     }).fail((error) => {
       if (error.status == "404") {
       }
@@ -22,6 +23,7 @@ export function changePage(pageID, subPageID) {
       MODEL.createRecipe();
       MODEL.loopData();
       MODEL.deleteRecipe();
+      // MODEL.viewRecipe();
     }).fail((error) => {
       if (error.status == "404") {
         //   alert("Page can not be found. Please check your url!");
