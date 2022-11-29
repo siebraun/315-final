@@ -57,6 +57,7 @@ export function initSubmitListener() {
     let password = $("#pw").val();
     let fname = $("#fname").val();
     let lname = $("#lname").val();
+
     // let firstname = localStorage.getItem("fname");
 
     // show hidden nav on log-in
@@ -64,12 +65,12 @@ export function initSubmitListener() {
     console.log("hi");
 
     //navigate to your yourrecipes page
-    MODEL.changePage("createRecipe");
+    MODEL.changePage("yourRecipes");
     $("#app, nav, footer").css("background-color", "transparent");
 
-    console.log(fname);
+    // loopData();
 
-    $("").prepend("hello");
+    document.getElementById("helloMessage").append(fname);
 
     // console.log("hi");
   });
@@ -212,45 +213,16 @@ export function createRecipe() {
       });
     });
 
-    localStorage.setItem("newRecipe", JSON.stringify(recipeObj));
-    let newRecipe = JSON.parse(localStorage.getItem("newRecipe"));
-    for (let i = 0; i < newRecipe.length; i++) {
-      let newRecipes = newRecipe[i];
-      document.getElementById("yourrecipes").append(newRecipes);
+    console.log(recipeObj);
+
+    /* Setting the local storage to the new recipe object. */
+
+    let infoVals = recipeObj.map((item) => item.info);
+
+    for (let i = 0; i < infoVals.length; i++) {
+      var infos = infoVals[i];
+      console.log(infos + i);
     }
-
-    // localStorage.setItem("info", JSON.stringify(recipeObj.info));
-
-    // localStorage.setItem("ingredients", JSON.stringify(recipeObj.ingredients));
-    // localStorage.setItem(
-    //   "instructions",
-    //   JSON.stringify(recipeObj.instructions)
-    // );
-
-    // loopData();
-    // console.log(localStorage.key(1));
-
-    let newInfo = JSON.parse(localStorage.getItem("info"));
-    console.log(newInfo);
-    for (let i = 0; i < newInfo.length; i++) {
-      let newInfos = newInfo[i];
-      document.getElementById("yourrecipes").append(newInfo);
-    }
-
-    let newIngredients = JSON.parse(localStorage.getItem("ingredients"));
-    for (let i = 0; i < newIngredients.length; i++) {
-      let newIngred = newIngredients[i];
-    }
-
-    let newInstrustions = JSON.parse(localStorage.getItem("instructions"));
-    for (let i = 0; i < newInstrustions.length; i++) {
-      let newInstr = newInstrustions[i];
-      document.getElementById("yourrecipes").append(newInstr[i]);
-    }
-
-    // console.log(newInfo);
-
-    console.log(newInstrustions);
   });
 }
 
