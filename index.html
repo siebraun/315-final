@@ -17,7 +17,10 @@
         <a href="#browse">Browse</a>
         <a href="#createRecipe">Create Recipe</a>
         <a class="hidden" href="#yourRecipes">Your Recipes</a>
-        <a class="login" href="#login">Login</a>
+        <a class="login" id="login" href="#login">Login</a>
+        <a class="login hidden" href="#" id="logout" onclick="logout(callback)"
+          >Logout</a
+        >
       </span>
     </nav>
     <div id="app"></div>
@@ -27,6 +30,7 @@
 
       <div class="links">
         <a class="login" href="#login">Login</a>
+
         <p>Recipes by Category</p>
         <p>Privacy and Copyright</p>
         <p class="hidden">Create Recipe</p>
