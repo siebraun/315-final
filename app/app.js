@@ -5,22 +5,40 @@ var instrCount = 3;
 var currentRecipe = "";
 
 function route() {
-  let hashtagLink = window.location.hash; //get page from hashtag in url
-  let pageID = hashtagLink.replace("#", ""); //set page id without hashtag
+  let hashtagLink = window.location.hash;
+  let pageID = hashtagLink.replace("#", "");
 
   //route pages
   if (pageID == "" || pageID == "home") {
     MODEL.currentPage("home");
   } else if (pageID == "login") {
-    MODEL.currentPage("login", initLoginListeners);
+    MODEL.currentPage("login", initLoginListeners),
+      $("body, nav, footer").css("background-color", "var(--yellow)");
+    $("body").css("background-image", "none");
   } else if (pageID == "createRecipe") {
-    MODEL.currentPage("createRecipe", addRecipe);
+    MODEL.currentPage("createRecipe", addRecipe),
+      $("body, nav, footer").css("background-color", "white");
+    $("body").css("background-image", "none");
   } else if (pageID == "yourRecipes") {
-    MODEL.currentPage("yourRecipes", displayUserRecipes);
+    MODEL.currentPage("yourRecipes", displayUserRecipes),
+      $("body").css(
+        "background-image",
+        "linear-gradient(rgba(167, 232, 189, .8), rgba(167, 232, 189, .8)), url('../assets/images/recipe-hero.jpg')"
+      );
+    $("nav, footer").css("background-color", "transparent");
   } else if (pageID.indexOf("/") !== -1) {
-    MODEL.currentPage(pageID, editRecipe);
+    MODEL.currentPage(pageID, editRecipe),
+      $("body, nav, footer").css("background-color", "white");
+    $("body").css("background-image", "none");
+  } else if (pageID.indexOf("?") !== -1) {
+    MODEL.currentPage(pageID, deleteRecipe);
   } else if (pageID == "yourRecipes") {
-    MODEL.currentPage("yourRecipes", initYourRecipesListeners);
+    MODEL.currentPage("yourRecipes", initYourRecipesListeners),
+      $("body").css(
+        "background-image",
+        "linear-gradient(rgba(167, 232, 189, .8), rgba(167, 232, 189, .8)), url('../assets/images/recipe-hero.jpg')"
+      );
+    $("nav, footer").css("background-color", "transparent");
   }
   //if there is no underscore, indexof returns -1
   else if (pageID.indexOf("_") !== -1) {
@@ -33,15 +51,15 @@ function route() {
 function initLoginListeners() {
   $("#signup").on("click", () => {
     signUp();
-    // console.log("hello");
   });
   $("#login").on("click", login);
 
-  $("#login").on("click", logout);
+  $("#logout").on("click", logout);
 }
 
+// add recipe to users profile
 function addRecipe(username) {
-  $("#name-greeting").html(`Hey ${username}, create your recipe!`);
+  $("#user-hello").html(`Hey ${username}, create your recipe!`);
 
   $(".addIngred").on("click", (e) => {
     console.log("click");
@@ -94,18 +112,17 @@ function addRecipe(username) {
       recipeObj.ingredients.push(ingredient.value);
     });
     MODEL.addRecipe(recipeObj);
-    goHome();
   });
 }
 
-//whenever the larger "recipes page" gets made, each recipe needs to have the "edit" button pass over the recipeid
+// edit recipe function
 async function editRecipe(username, recipeid) {
-  let recipe = MODEL.viewSingleRecipe(recipeid);
+  let recipe = MODEL.viewRecipe(recipeid);
   ingredCount = recipe.ingredients.length;
   instrCount = recipe.instructions.length;
-  $("#name-greeting").html(`Hey ${username}, edit your recipe!`);
+  $("#user-hello").html(`Hey ${username}, edit your recipe!`);
 
-  await $(".inputs-section")
+  await $(".basicInfo")
     .append(`<input type="text" id="rImg" value=${recipe.image} />
   <input type="text" id="rName" value=${recipe.name} />
   <input type="text" id="rDesc" value=${recipe.desc} />
@@ -117,14 +134,14 @@ async function editRecipe(username, recipeid) {
       `<input type="text" id="ingred${idx}" value=${ingredient} />`
     );
   });
-  $(".formIngredients").append(`<div class="addIngredButton"><p>+</p></div>`);
+  $(".formIngredients").append(`<div id="addIngred" class="addButton">+</div>`);
 
   $.each(recipe.instructions, (idx, instr) => {
     $(".formInstructions").append(
       `<input type="text" id="instr${idx}" value=${instr} />`
     );
   });
-  $(".formInstructions").append(`<div class="addStepButton"><p>+</p></div>`);
+  $(".formInstructions").append(`<div id="addInst" class="addButton">+</div>`);
 
   $(".addIngred").on("click", (e) => {
     console.log("click");
@@ -151,6 +168,7 @@ async function editRecipe(username, recipeid) {
   });
 
   let recipeObj = {
+    recipeid: recipeid,
     image: "",
     name: "",
     desc: "",
@@ -168,7 +186,7 @@ async function editRecipe(username, recipeid) {
     recipeObj.name = $("#rName")[0].value;
     recipeObj.desc = $("#rDesc")[0].value;
     recipeObj.time = $("#rTime")[0].value;
-    recipeObj.servings = $("#rServings")[0].value;
+    recipeObj.servings = $("#rServing")[0].value;
 
     $(".formInstructions input").each((idx, instr) => {
       recipeObj.instructions.push(instr.value);
@@ -178,18 +196,18 @@ async function editRecipe(username, recipeid) {
       recipeObj.ingredients.push(ingredient.value);
     });
     MODEL.editRecipe(recipeObj);
+    window.location.hash = "yourRecipes";
   });
 }
 
-//whenever the larger "recipes page" gets made, each recipe needs to have the "view" button pass over the recipeid
 function chosenRecipe(recipeid) {
-  let recipe = model.viewSingleRecipe(recipeid);
-  $(".recipe-header").html(`
-  <h2 id="sw-rName">${recipe.name}</h2>
+  let recipe = model.viewRecipe(recipeid);
+  $(".view-yourrecipes").html(`
+  <h2 >${recipe.name}</h2>
     <img src="${recipe.image}" alt="" />
     <div class="description">
       <h2>Description:</h2>
-      <p>${recipe.description}</p>
+      <p>${recipe.desc}</p> 
       <h3>Total Time:</h3>
       <p>${recipe.time}</p>
       <h3>Servings:</h3>
@@ -212,7 +230,7 @@ function initListeners() {
   console.log("ready");
   $(window).on("hashchange", route);
   route();
-  MODEL.viewAllRecipes();
+  MODEL.viewRecipe();
 }
 
 function signUp() {
@@ -221,76 +239,81 @@ function signUp() {
   let email = $("#email").val();
   let password = $("#pw").val();
 
-  MODEL.signup(fn, ln, email, password, goHome);
+  MODEL.signup(fn, ln, email, password);
 
   $("#fname").val("");
   $("#lname").val("");
   $("#signup-email").val("");
   $("#signup-password").val("");
 
-  $(".hidden").css("display", "inline-block");
-  $("#login").css("display", "none");
+  $(".links").html(`
+  <a href="#home">Home</a>
+  <a href="#browse">Browse</a>
+  <a href="#createRecipe">Create Recipe</a>
+  <a href="#yourRecipes">Your Recipes</a>
+  
+  <a class="login" href="#login" id="logout"
+    >Logout</a
+  >`);
 }
 
 function login() {
-  let email = $("#login-email").val();
-  let password = $("#login-password").val();
+  let email = $("#email").val();
+  let password = $("#pw").val();
 
-  MODEL.login(email, password, goHome);
+  MODEL.login(email, password);
 
-  $("#login-email").val("");
-  $("#login-password").val("");
+  // clear entries
+  $("#email").val("");
+  $("#pw").val("");
 
-  $(".hidden").css("display", "inline-block");
-  $("#login").css("display", "none");
-}
-
-function logout() {
-  MODEL.logout(goHome);
-  $(".nav-links").html(`
-  <a href="#home" id="home">Home</a>
-        <a href="#browse" id="browse">Browse</a>
-        <a href="#create-recipe" id="create-recipe">Create Recipe</a>
-        
-        <a class="site-btn" id="nav-login" href="#login"><span>Login</span></a>
+  $(".links").html(`
+  <a href="#home">Home</a>
+  <a href="#browse">Browse</a>
+  <a href="#createRecipe">Create Recipe</a>
+  <a href="#yourRecipes">Your Recipes</a>
+  
+  <a class="login" href="#login" id="logout"
+    >Logout</a
+  >
   `);
 }
 
-function goHome() {
-  window.location.hash = "#home";
-}
-
-function displayAllRecipes() {
-  //you can use this allrecipes variable to display the whole list of recipes
-  //allRecipes will come back as an array of objects
-  let allRecipes = model.viewAllRecipes();
-  $.each(allRecipes, (idx, recipe) => {
-    //append to the page here
-  });
+function logout() {
+  //send user home
+  console.log("log out");
+  localStorage.removeItem("currentUser");
+  MODEL.logout();
+  $(".links").html(`
+  <a href="#home" id="home">Home</a>
+        <a href="#browse" id="browse">Browse</a>
+        
+        <a class="login" id="login" href="#login">Login</a>
+  `);
 }
 
 function displayUserRecipes(username) {
   let recipes = MODEL.viewUserRecipes();
-  $("#name-greeting").html(`Hey ${username}, here are your recipes!`);
+  $("#user-hello").html(`Hey ${username}, here are your recipes!`);
   console.log(recipes);
   $.each(recipes, (idx, recipe) => {
-    $(".recipes-container")
-      .append(`<div class="ind-container"><div class="ind-recipe"><div class="rImg-section">
+    $(".your-recipes-wrapper")
+      .append(`<div class="recip-container"><div class="recipe"><div class="rImg">
     <img src="${recipe.image}" alt="">
-    <a href="#individual_recipe_${recipe.recipeid}">View</a>
+    <a href="#viewRecipe/${recipe.recipeid}">View</a>
     </div>
     <div class="rDescription">
     <h3>${recipe.name}</h3>
     <p class="description">${recipe.desc}</p>
-    <div class="recipe-details"><img src="./images/time.svg" alt="time-svg" /><p class="time">${recipe.time}</p></div>
-    <div class="recipe-details"><img src="./images/servings.svg" alt="servings-svg" /><p class="serving">${recipe.servings}</p></div>
+    <div  class="recipe-details"><img style="width: 23px; margin-right: 17px;"  src="../assets/images/time.svg" alt="clock image" /><p class="time">${recipe.time}</p></div>
+    <div  class="recipe-details"><img style="width: 23px; margin-right: 17px;"  src="../assets/images/servings.svg" alt="recipe serving size" /><p class="serving">${recipe.servings}</p></div>
     </div>
     
     </div>
     
-    <div class="edit-delete-btns">
-    <a href="#edit-recipe/${recipe.recipeid}">Edit Recipe</a>
-      <a href="#delete-recipe/${recipe.recipeid}">Delete</a>
+    <div class="recipeButtons">
+    <a href="#editRecipe/${recipe.recipeid}">Edit Recipe</a>
+    <a href="#deleteRecipe?${recipe.recipeid}">Delete</a>
      
     </div>
     </div>
@@ -298,8 +321,11 @@ function displayUserRecipes(username) {
   });
 }
 
-function initYourRecipesListeners() {
-  $("");
+function deleteRecipe(recipeid) {
+  $("#delete").on("click", () => {
+    MODEL.deleteRecipe(recipeid);
+    routeToHome();
+  });
 }
 
 $(document).ready(function () {

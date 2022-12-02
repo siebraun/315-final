@@ -143,13 +143,107 @@ footer .footer-icons img {
   cursor: pointer;
 }
 
-.recipes-wrapper {
+.your-recipes-wrapper {
   width: 80%;
-  margin: 0 auto;
-  background-color: var(--green);
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+}
+.your-recipes-wrapper #user-hello {
+  font-size: 25px;
+  font-weight: bold;
+  margin-left: 100px;
+  margin-top: 100px;
+}
+.your-recipes-wrapper .recip-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+.your-recipes-wrapper .recip-container .rImg {
+  position: relative;
+}
+.your-recipes-wrapper .recip-container .rImg img {
+  width: 300px;
+  height: 263px;
+  border-radius: 20px;
+}
+.your-recipes-wrapper .recip-container .rImg a {
+  position: absolute;
+  right: 90px;
+  top: 120px;
+  width: 127px;
+  height: 42px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  background-color: var(--yellow);
+  text-align: center;
+  font-size: 20px;
+  text-decoration: none;
+  color: black;
+  box-shadow: 0px 10px 6px rgba(0, 0, 0, 0.16);
+}
+.your-recipes-wrapper .recip-container .recipe {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 524px;
+  margin-top: 52px;
+}
+.your-recipes-wrapper .recip-container .recipe .rDescription {
+  width: 224px;
+  height: 263px;
+  border-radius: 20px;
+  background-color: white;
+  text-align: center;
+}
+.your-recipes-wrapper .recip-container .recipe .rDescription h3 {
+  margin: 0 auto;
+  font-size: 20px;
+  border-bottom: 1px solid black;
+  width: 130px;
+  margin-bottom: 20px;
+  margin-top: 45px;
+  text-align: left;
+}
+.your-recipes-wrapper .recip-container .recipe .rDescription .description {
+  font-size: 13px;
+}
+.your-recipes-wrapper .recip-container .recipe .rDescription .recipe-details {
+  display: flex;
+  align-items: center;
+  width: 100px;
+  height: 24px;
+  margin: auto;
+  margin-top: 22px;
+}
+.your-recipes-wrapper .recip-container .recipe .rDescription .recipe-details img {
+  width: 23px;
+  height: 24px;
+}
+.your-recipes-wrapper .recip-container .recipe .rDescription .recipe-details p {
+  font-family: Lato-Regular;
+  font-size: 14px;
+  max-width: 80px;
+  padding-top: 15px;
+}
+.your-recipes-wrapper .recipeButtons {
+  margin-top: 15px;
+}
+.your-recipes-wrapper .recipeButtons a {
+  height: 42px;
+  width: 127px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  background-color: var(--yellow);
+  text-align: center;
+  font-size: 20px;
+  text-decoration: none;
+  color: black;
+  box-shadow: 0px 10px 6px rgba(0, 0, 0, 0.16);
 }
 
 * {
