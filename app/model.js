@@ -11,12 +11,12 @@ export function getUser() {
 }
 
 //sign up
-export async function signup(fname, lname, username, pw, callback) {
+export async function signup(fname, lname, email, pw, callback) {
   //create user from login form
   var user = {
     firstName: fname,
     lastName: lname,
-    username: username,
+    email: email,
     password: pw,
     status: true,
   };
@@ -78,9 +78,11 @@ BEGIN RECIPE FUNCTIONS
 
 //view recipe
 export function viewRecipe(recipeid) {
-  //get recipes from localstorage
   let recipes = JSON.parse(localStorage.getItem("recipes"));
+  let user = JSON.parse(localStorage.getItem("currentUser"));
   let recipe = recipes[recipeid];
+
+  // console.log(recipe);
   return recipe;
 }
 
@@ -114,7 +116,7 @@ export function editRecipe(recipeObj) {
     recipeid: recipeObj.recipeid,
     image: recipeObj.image,
     name: recipeObj.name,
-    description: recipeObj.desc,
+    desc: recipeObj.desc,
     time: recipeObj.time,
     servings: recipeObj.servings,
     ingredients: recipeObj.ingredients,
@@ -172,13 +174,13 @@ export function currentPage(pageID, callback) {
         callback();
       });
     }
-  } else if (pageID == "create-recipe") {
+  } else if (pageID == "createRecipe") {
     let user = JSON.parse(localStorage.getItem("currentUser"));
     $.get(`pages/${pageID}.html`, function (data) {
       $("#app").html(data);
       callback(user.firstName);
     });
-  } else if (pageID == "your-recipes") {
+  } else if (pageID == "yourRecipes") {
     let user = JSON.parse(localStorage.getItem("currentUser"));
     $.get(`pages/${pageID}.html`, function (data) {
       $("#app").html(data);
