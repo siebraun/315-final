@@ -329,4 +329,91 @@ input[type=submit] {
   box-shadow: 0px 10px 6px rgba(0, 0, 0, 0.16);
 }
 
+.view-recipe-wrapper {
+  margin-bottom: 93px;
+}
+.view-recipe-wrapper h2,
+.view-recipe-wrapper h3 {
+  font-family: Lato-Black;
+  margin-bottom: 36px;
+  letter-spacing: 3px;
+}
+.view-recipe-wrapper p {
+  font-family: Caveat-Regular;
+  font-size: 20px;
+}
+.view-recipe-wrapper .top {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1000px;
+  width: 100%;
+  margin-top: 163px;
+  margin-left: 92px;
+  position: relative;
+}
+.view-recipe-wrapper .top .recipe-image {
+  min-width: 50%;
+  display: flex;
+}
+.view-recipe-wrapper .top .recipe-image #recipe-name {
+  transform: rotate(-90deg);
+  top: 190px;
+  height: 15px;
+  width: 40px;
+  margin-top: 50%;
+  margin-right: 10px;
+  font-size: 25px;
+  font-family: Lato-Black;
+  letter-spacing: 3px;
+}
+.view-recipe-wrapper .top .recipe-image img {
+  height: 421px;
+  width: 468px;
+  object-fit: cover;
+  float: right;
+}
+.view-recipe-wrapper .top .description {
+  min-width: 50%;
+  margin-left: 40px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.view-recipe-wrapper .top .description .desc {
+  margin-bottom: 40px;
+}
+.view-recipe-wrapper .top .description .desc h2 {
+  font-size: 25px;
+}
+.view-recipe-wrapper .top .description .desc h3 {
+  font-size: 20px;
+}
+.view-recipe-wrapper .top .description .desc p {
+  max-width: 455px;
+}
+.view-recipe-wrapper .bottom {
+  max-width: 1000px;
+  width: 100%;
+  margin-left: 125px;
+}
+.view-recipe-wrapper .bottom .info {
+  margin-top: 60px;
+}
+.view-recipe-wrapper .bottom .edit-button {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--yellow);
+  font-family: caveat;
+  font-size: 25px;
+  width: 250px;
+  height: 52px;
+  margin-top: 50px;
+  border-radius: 25px;
+  border: none;
+  box-shadow: 0px 10px 6px rgba(0, 0, 0, 0.16);
+  margin-bottom: 130px;
+  cursor: pointer;
+}
+
 /*# sourceMappingURL=styles.css.map */
