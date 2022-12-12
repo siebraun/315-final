@@ -1,10 +1,10 @@
 # final-project
 
-CRUD application by Sierra Braun and Ramona Tin.
+CRUD application by Sierra Braun.
 
 ## application features
 
-features go here
+On this app, you can log in / register, and the user information is saved in the localstorage. From here, you can create a recipe, which adds the information to your recipes page. You can then edit the recipe, delete theh recipe, or view the recipe's details. 
 
 ## credits
 
@@ -12,4 +12,12 @@ features go here
 
 Site structure and routing
 Navigation and footer styling
-Log in function
+Log in/log out/register functions
+Alerts
+Create recipe function & styling
+Delete recipe function & styling
+View recipe function & styling 
+Edit recipe function & styling
+
+everything that the site does, i coded (:
+
