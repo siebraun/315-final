@@ -13,12 +13,19 @@ On this app, you can log in / register, and the user information is saved in the
 ### Sierra
 
 Site structure and routing
+
 Navigation and footer styling
+
 Log in/log out/register functions
+
 Alerts
+
 Create recipe function & styling
+
 Delete recipe function & styling
+
 View recipe function & styling 
+
 Edit recipe function & styling
 
 everything that the site does, i coded (:
